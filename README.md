@@ -1,7 +1,7 @@
 # Pastebin-worker
 
 This is a pastebin that can be deployed on Cloudflare workers. It forks from [shz.al](https://github.com/SharzyL/pastebin-worker), thanks for this project.
-Demo: [igdu](https://igdu.cloudns.org/) or [shz.al](https://shz.al) 
+  Demo: [igdu](https://igdu.cloudns.org/) or [shz.al](https://shz.al) 
 
 [shz.al](https://github.com/SharzyL/pastebin-worker)'s original guideline should change some command line with the relates app changing, such as wrangler publish do not support or recommend now. You should change the two "wrangler publish" to "wrangler deploy" in makefile. Maybe others should remember, but I forget.  
 
