@@ -1,6 +1,6 @@
 # Pastebin-worker
 
-This is a pastebin that can be deployed on Cloudflare workers. Try it on [shz.al](https://shz.al). 
+This is a pastebin that can be deployed on Cloudflare workers. Try it on [shz.al](https://shz.al) or [igdu](https://igdu.cloudns.org/). 
 
 **Philosophy**: effortless deployment, friendly CLI usage, rich functionality. 
 
