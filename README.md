@@ -1,6 +1,9 @@
 # Pastebin-worker
 
-This is a pastebin that can be deployed on Cloudflare workers. Try it on [shz.al](https://shz.al) or [igdu](https://igdu.cloudns.org/). 
+This is a pastebin that can be deployed on Cloudflare workers. It forks from [shz.al](https://github.com/SharzyL/pastebin-worker), thanks for this project.
+Demo: [igdu](https://igdu.cloudns.org/) or [shz.al](https://shz.al) 
+
+[shz.al](https://github.com/SharzyL/pastebin-worker)'s original guideline should change some command line with the relates app changing, such as wrangler publish do not support or recommend now. You should change the two "wrangler publish" to "wrangler deploy" in makefile. Maybe others should remember, but I forget.  
 
 **Philosophy**: effortless deployment, friendly CLI usage, rich functionality. 
 
@@ -15,7 +18,7 @@ This is a pastebin that can be deployed on Cloudflare workers. Try it on [shz.al
 8. Used as a URL shortener
 9. Customize returned mimetype
 
-## Usage
+## Usage methods
 
 1. You can post, update, delete your paste directly on the website (such as [shz.al](https://shz.al)). 
 
@@ -32,23 +35,26 @@ This is a pastebin that can be deployed on Cloudflare workers. Try it on [shz.al
 
 You are free to deploy the pastebin on your own domain if you host your domain on Cloudflare. 
 
-Requirements:
-1. \*nix environment with bash and basic cli programs. If you are using Windows, try cygwin, WSL or something. 
-2. GNU make. 
-3. `node` and `yarn`. 
+1.Requirements:
+1.1. \*nix environment with bash and basic cli programs. If you are using Windows, try cygwin, WSL or something. 
+1.2. GNU make. 
+1.3. `node` and `yarn`. 
+  This part maybe be more important than you think in windows system. Recomman setting: git windows, nodejs(ltsl), cygwin(for install other dependecy app),yarn.
 
-Create two KV namespaces on Cloudflare workers dashboard (one for production, one for test). Remember their IDs. If you do not need testing, simply create one.
+2.Create two KV namespaces on Cloudflare workers dashboard (one for production, one for test). Remember their IDs. If you do not need testing, simply create one,Remember the KV ID. Don't create a workers, just KV. Workers will be created by the command make deploy in later setting.
 
-Clone the repository and enter the directory. Login to your Cloudflare account with `wrangler login`. Modify entries in `wrangler.toml` according to your own account information (`account_id`, routes, kv namespace ids are what you need to modify). The `env.preview` section can be safely removed if you do not need a testing deployment. Refer to [Cloudflare doc](https://developers.cloudflare.com/workers/cli-wrangler/configuration) on how to find out these parameters.
+3.Clone the repository to your local file path and enter the directory. 
 
-Modify the contents in `config.json` (which controls the generation of static pages): `BASE_URL` is the URL of your site (no trailing slash); `FAVICON` is the URL to the favicon you want to use on your site. If you need testing, also modify `config.preview.json`.
+4.Login to your Cloudflare account with comand `wrangler login`. Before that your should install the newest wrangler, the old wrangler do not support some command.
+Wrangler login will ask you to authenticate your cloudflare account could make change throuhg wrangler.
 
-Deploy and enjoy!
+5.Modify entries in `wrangler.toml` according to your own account information (`account_id`, routes, kv namespace ids are what you need to modify). The `env.preview` section can be safely removed if you do not need a testing deployment. Refer to [Cloudflare doc](https://developers.cloudflare.com/workers/cli-wrangler/configuration) on how to find out these parameters.
 
-```shell
-$ yarn install
-$ make deploy
-```
+6.Modify the contents in `config.json` (which controls the generation of static pages): `BASE_URL` is the URL of your site (no trailing slash); `FAVICON` is the URL to the favicon you want to use on your site. If you need testing, also modify `config.preview.json`.
+
+7. Deploy and enjoy! Before that, check the nodejs's version, the old will not support by wrangler; and you should check whether you has installed yarn before you deploy by cloudflare wrangler. Then you could make deploy. Then you could find your pastebin service will be ok through your custom domain.
+   
+ 
 
 ## Auth
 
